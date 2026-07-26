@@ -1,0 +1,11 @@
+einops
+flash-attn
+numpy
+opencv-python
+Pillow
+scipy
+tensorboard
+timm
+torch
+torch-fidelity
+tqdm
