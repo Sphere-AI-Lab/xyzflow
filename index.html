@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XYZFlow — Multidimensional Shortcut Flows</title>
+  <meta name="description" content="Project page for XYZFlow: scaling multidimensional shortcut flows for efficient generative modeling." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600;6..96,700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#17223b; --muted:#65708a; --bg:#f6f8fc; --panel:#ffffff; --line:#dfe5f0; --violet:#6d52d9; --cyan:#087ea4; --lime:#d9f36a; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background-color:#f4f7ff; background-image:radial-gradient(circle at 12% 9%, rgba(255,228,167,.42) 0 8%, transparent 24%),radial-gradient(circle at 88% 12%, rgba(194,224,255,.68) 0 9%, transparent 27%),radial-gradient(circle at 78% 58%, rgba(221,202,255,.42) 0 13%, transparent 31%),radial-gradient(circle at 18% 82%, rgba(197,243,221,.36) 0 10%, transparent 26%),radial-gradient(rgba(110,91,180,.10) 1px, transparent 1px),linear-gradient(125deg,#fdfcff 0%,#eef4ff 48%,#fbf8f0 100%); background-size:auto,auto,auto,auto,22px 22px,auto; font-family:Manrope,system-ui,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1160px, calc(100% - 48px)); margin:auto; }
+    .nav { height:78px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:-.04em; }
+    .brand img { width:31px; height:31px; border-radius:9px; object-fit:cover; box-shadow:0 0 25px #8b5cf677; }
+    .brand span { font-size:18px; }
+    .navlinks { display:flex; gap:26px; color:var(--muted); font-size:13px; }
+    .navlinks a:hover { color:white; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:10px 15px; color:white; font-size:12px; }
+    .hero { min-height:790px; display:block; text-align:center; padding:82px 0 96px; }
+    .eyebrow { color:var(--cyan); font:500 11px 'DM Mono',monospace; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { font-family:'Bodoni Moda', Georgia, serif; font-size:clamp(36px, 5.4vw, 70px); font-weight:600; line-height:1.02; letter-spacing:-.055em; margin:20px auto 26px; max-width:1080px; }
+    h1 em { color:var(--violet); font-style:normal; }
+    .lede { max-width:680px; margin:0 auto; color:var(--muted); line-height:1.75; font-size:17px; }
+    .actions { display:flex; justify-content:center; gap:12px; margin-top:30px; flex-wrap:wrap; }
+    .btn { padding:13px 18px; border-radius:12px; font-weight:700; font-size:13px; border:1px solid transparent; transition:.2s; }
+    .btn.primary { background:var(--violet); color:#ffffff; box-shadow:0 8px 20px #6d52d933; }
+    .btn.primary:hover { background:#5940c6; transform:translateY(-2px); }
+    .btn.ghost { border-color:#b9c5dc; color:#24304a; background:#ffffff; box-shadow:0 5px 16px #71809d14; }
+    .btn.ghost:hover { border-color:var(--violet); color:#4f36bd; background:#faf9ff; }
+    .hero-visual { position:relative; width:min(1080px, 94vw); margin:58px auto 0; }
+    .hero-visual:before { content:""; position:absolute; inset:-40px; background:radial-gradient(circle, #8b73ed33, transparent 67%); filter:blur(12px); }
+    .hero-visual img { position:relative; width:100%; height:auto; border-radius:0; border:1px solid var(--line); box-shadow:0 24px 60px #7482a233; display:block; background:#fff; }
+    .hero-abstract { width:100%; margin:34px auto 0; padding:26px 32px; text-align:left; color:var(--muted); font-size:15px; line-height:1.85; background:rgba(255,255,255,.72); border:1px solid rgba(207,215,232,.9); border-radius:12px; box-shadow:0 8px 24px #71809d12; backdrop-filter:blur(8px); }
+    .hero-abstract strong { display:block; margin-bottom:10px; text-align:center; color:var(--ink); font:500 12px 'DM Mono',monospace; letter-spacing:.16em; text-transform:uppercase; }
+    section { padding:95px 0; border-top:1px solid var(--line); }
+    .section-head { display:flex; justify-content:space-between; gap:35px; align-items:end; margin-bottom:36px; }
+    h2 { font-size:clamp(31px,4vw,52px); letter-spacing:-.065em; line-height:1; margin:12px 0 0; }
+    .section-head p { color:var(--muted); max-width:420px; line-height:1.65; margin:0; font-size:14px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+    .metric { padding:24px; min-height:136px; background:linear-gradient(145deg,#ffffff,#f0f3fa); border:1px solid var(--line); border-radius:17px; box-shadow:0 8px 25px #71809d12; }
+    .metric strong { display:block; font-size:34px; letter-spacing:-.07em; color:var(--lime); }
+    .metric span { color:var(--muted); font-size:12px; line-height:1.5; }
+    .duo { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:28px; box-shadow:0 10px 30px #71809d12; }
+    .card .tag { color:var(--cyan); font:11px 'DM Mono',monospace; letter-spacing:.12em; }
+    .card h3 { margin:13px 0 9px; font-size:23px; letter-spacing:-.045em; }
+    .card p { color:var(--muted); line-height:1.7; font-size:14px; margin:0; }
+    .flow { margin-top:24px; height:92px; position:relative; overflow:hidden; border-radius:14px; background:#f4f6fb; border:1px solid var(--line); }
+    .flow:before,.flow:after { content:""; position:absolute; left:-10%; width:120%; height:2px; background:linear-gradient(90deg,transparent,var(--violet),var(--cyan),transparent); transform:rotate(-8deg); top:55%; box-shadow:0 0 18px var(--violet); animation:drift 5s linear infinite; }
+    .flow:after { top:34%; opacity:.35; transform:rotate(8deg); animation-duration:7s; }
+    @keyframes drift { to { translate:10% 0; } }
+    .gallery { display:grid; grid-template-columns:1.35fr .65fr; gap:16px; }
+    .gallery .shot { overflow:hidden; border-radius:0; border:1px solid var(--line); background:#ffffff; cursor:zoom-in; }
+    .shot img { display:block; width:100%; height:auto; object-fit:contain; transition:transform .4s; border-radius:0; }
+    .shot:hover img { transform:scale(1.025); }
+    .gallery .stack { display:grid; gap:16px; }
+    .caption { padding:13px 15px; color:var(--muted); font-size:11px; line-height:1.5; border-top:1px solid var(--line); }
+    .figure-notes { margin-top:30px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .figure-notes p { margin:0; padding:20px; background:#ffffff; border:1px solid var(--line); border-radius:14px; color:var(--muted); font-size:13px; line-height:1.7; box-shadow:0 8px 24px #71809d12; }
+    .figure-notes strong { color:var(--ink); }
+    .quote { font-size:clamp(25px,4vw,45px); line-height:1.15; letter-spacing:-.06em; max-width:900px; margin:0; }
+    .quote span { color:var(--violet); }
+    .authors { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; color:var(--muted); font-size:13px; }
+    .author { padding:9px 12px; border:1px solid var(--line); border-radius:999px; }
+    footer { border-top:1px solid var(--line); padding:28px 0 38px; color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:16px; }
+    .modal { position:fixed; inset:0; display:none; place-items:center; background:#03040bcc; z-index:5; padding:25px; }
+    .modal.open { display:grid; }
+    .modal img { max-width:min(1100px,95vw); max-height:88vh; border-radius:0; border:1px solid var(--line); box-shadow:0 25px 90px #000; }
+    .close { position:fixed; top:20px; right:27px; font-size:30px; color:white; cursor:pointer; }
+    @media (max-width:800px) { .wrap{width:min(100% - 30px,560px)} .navlinks{display:none} .hero{padding-top:52px; min-height:650px} .hero-visual{margin-top:42px; width:100%} .desktop-break{display:none} .metrics{grid-template-columns:1fr 1fr} .duo,.gallery,.figure-notes{grid-template-columns:1fr} .section-head{display:block} .section-head p{margin-top:18px} footer{display:block} footer span{display:block;margin-top:10px} }
+  </style>
+</head>
+<body>
+  <header class="wrap nav"><a class="brand" href="#top"><img src="assets/xyz_logo.jpg" alt="XYZFlow logo"><span>XYZFlow</span></a><nav class="navlinks"><a href="#idea">Idea</a><a href="#method">Method</a><a href="#results">Results</a><a href="#figures">Figures</a></nav><a class="pill" href="https://arxiv.org/abs/2608.12276" target="_blank">arXiv ↗</a></header>
+  <main id="top">
+    <div class="wrap hero"><div><div class="eyebrow">ICML 2026 · arXiv:2608.12276</div><h1>XYZFlow: <em>Scaling Multidimensional Shortcut Flows for Efficient Generative Modeling</em></h1><p class="lede">A multidimensional flow-matching framework for high-fidelity, few-step image generation.</p><div class="actions"><a class="btn primary" href="#method">Explore the method ↓</a><a class="btn ghost" href="https://arxiv.org/pdf/2608.12276" target="_blank">Read the paper ↗</a><a class="btn ghost" href="https://github.com/Sphere-AI-Lab/xyzflow" target="_blank">GitHub ↗</a></div></div><div class="hero-visual"><img src="assets/figure4.png" alt="XYZFlow case study: quality and latency comparison"><div class="hero-abstract"><strong>Abstract</strong>High-fidelity image generation faces a trade-off between speed and quality. Diffusion models produce strong visuals but require costly iterative sampling. Existing efficient methods mainly distill pretrained models into few-step samplers, a challenging process that depends heavily on teacher-model quality. In this paper, we introduce XYZFlow, a framework that rethinks efficient generation through multidimensional scaling of flow matching. Unlike single-step mappings, XYZFlow enhances expressivity by making probability paths more identifiable and learnable through structured multidimensional conditioning. We view autoregressive modeling as implicit flow straightening, where richer context reduces trajectory ambiguity. XYZFlow realizes this idea through two orthogonal dimensions: temporal scaling, which uses non-Markovian conditioning on the full denoising history; and spatial scaling, enabled by Next Shortcut Prediction, which sequentially generates patches using preceding patches’ denoising trajectories as priors. Experiments show that XYZFlow achieves state-of-the-art performance, with 7.2–8.5× teacher speedups and competitive FID, while Next Shortcut Prediction delivers superior quality-latency trade-offs over model scaling or step reduction.</div></div></div>
+    <section id="idea"><div class="wrap"><div class="section-head"><div><div class="eyebrow">The thesis</div><h2>Efficiency is a<br>conditioning problem.</h2></div><p>Instead of only shrinking models or sampling steps, XYZFlow increases the dimensionality of the context around each prediction—making the probability path straighter and more unique.</p></div><div class="metrics"><div class="metric"><strong>3–4</strong><span>inference steps in the low-step regime</span></div><div class="metric"><strong>2D</strong><span>temporal + spatial flow scaling</span></div><div class="metric"><strong>256²</strong><span>ImageNet evaluation resolution</span></div><div class="metric"><strong>SOTA</strong><span>competitive FID / quality–latency trade-off</span></div></div></div></section>
+    <section id="method"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Section 3 · The Proposed XYZFlow Framework</div><h2>Method, as described<br>in the paper.</h2></div><p>XYZFlow enhances the expressivity of flow models through multidimensional conditioning. The paper develops this idea from autoregressive flow enhancement to temporal and spatial conditioning.</p></div><div class="duo"><article class="card"><div class="tag">3.1</div><h3>Autoregressive Modeling as Flow Enhancement</h3><p>The growing autoregressive context acts as progressively stronger constraints. It can reduce the variance of the conditional distribution and straighten the probability-flow path from noise to data, making the mapping more unique and deterministic.</p><div class="flow" aria-hidden="true"></div></article><article class="card"><div class="tag">3.2</div><h3>A Motivating Observation from Progressive Constraint Strengthening</h3><p>As more patches are generated, later patches become easier to sample: predictions become more precise, latent patch variance decreases, and denoising paths become straighter under stronger contextual conditioning.</p><div class="flow" aria-hidden="true"></div></article><article class="card"><div class="tag">3.3</div><h3>Multidimensional Conditioning</h3><p>The framework enhances flow matching along temporal and spatial dimensions. Temporal conditioning uses a patch’s complete generation history; spatial conditioning uses Next Shortcut Prediction to transfer the preceding patch’s denoising trajectory as guidance.</p><div class="flow" aria-hidden="true"></div></article></div></div></section>
+    <section id="figures"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Paper figures</div><h2>See the constraints<br>stack up.</h2></div></div><div class="gallery"><figure class="shot" data-full="assets/figure1.png"><img src="assets/figure1.png" alt="Figure 1: ambiguous paths and Next Shortcut Prediction"></figure><div class="stack"><figure class="shot" data-full="assets/figure2.png"><img src="assets/figure2.png" alt="Figure 2: Next Shortcut Prediction"></figure><figure class="shot" data-full="assets/figure3.png"><img src="assets/figure3.png" alt="Figure 3: XYZFlow architecture"></figure></div></div><div class="figure-notes"><p><strong>Figure 1.</strong> Conventional one-shot denoising has overlapping, ambiguous probability paths. Next Shortcut Prediction instead transfers the preceding patch’s complete denoising trajectory as a prior for the next patch.</p><p><strong>Figure 2.</strong> As the autoregressive context grows, constraints strengthen: later patches become easier to predict, their latent variance decreases, and their denoising paths become straighter.</p><p><strong>Figure 3.</strong> XYZFlow combines intra-patch trajectory conditioning with cross-patch trajectory guidance to scale flow matching along temporal and spatial dimensions.</p></div></div></section>
+    <section id="results"><div class="wrap"><div class="eyebrow">The takeaway</div><p class="quote">“Richer context reduces trajectory ambiguity”—so the next shortcut can be <span>faster without becoming fragile.</span></p><div class="authors"><span class="author">Jinxiu Liu · CUHK</span><span class="author">Xuanming Liu · Westlake</span><span class="author">Kangfu Mei · Johns Hopkins</span><span class="author">Yandong Wen · Westlake</span><span class="author">Weiyang Liu · CUHK</span></div></div></section>
+  </main>
+  <footer class="wrap"><span>XYZFlow · Scaling Multidimensional Shortcut Flows for Efficient Generative Modeling</span><span><a href="https://arxiv.org/abs/2608.12276" target="_blank">Paper ↗</a> · CC BY 4.0</span></footer>
+  <div class="modal" id="modal"><div class="close" id="close">×</div><img id="modalImg" alt="Expanded paper figure"></div>
+  <script>document.querySelectorAll('.shot').forEach(s=>s.addEventListener('click',()=>{document.getElementById('modalImg').src=s.dataset.full;document.getElementById('modal').classList.add('open')}));document.getElementById('close').onclick=()=>document.getElementById('modal').classList.remove('open');document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')document.getElementById('modal').classList.remove('open')};document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modal').classList.remove('open')});</script>
+</body>
+</html>
